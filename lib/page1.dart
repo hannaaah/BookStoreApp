@@ -29,6 +29,10 @@ class _Page1State extends State<Page1> {
                       fontSize: 18,
                       color: Colors.grey[800],
                       fontWeight: FontWeight.w400),
+                  onChanged: (text) {
+                    Book.searchDetails(text);
+                    setState(() {});
+                  },
                 )
               : Text(
                   "Enid Blyton",
@@ -65,6 +69,7 @@ class _Page1State extends State<Page1> {
                     onTap: () {
                       setState(() {
                         search = false;
+                        Book.searchResults.clear();
                       });
                     })
                 : InkWell(
@@ -83,6 +88,8 @@ class _Page1State extends State<Page1> {
                     )),
           ],
         ),
-        body: Book());
+        body: Book(
+          search: search,
+        ));
   }
 }
